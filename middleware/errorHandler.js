@@ -1,5 +1,5 @@
 const { constants } = require("../constants");
-
+const asyncHandler = require("express-async-handler");
 
 const errorHandler = (err, req, res, next) => {
   const statusCode = res.statusCode ? res.statusCode : 500;
@@ -52,4 +52,4 @@ const errorHandler = (err, req, res, next) => {
   }
 };
 
-module.exports = errorHandler;
+module.exports = asyncHandler(errorHandler);
