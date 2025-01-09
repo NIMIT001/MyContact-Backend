@@ -1,5 +1,6 @@
 const express = require("express");
 const Connectdb = require("./config/dbConnection");
+const errorHandler = require("./middleware/errorHandler");
 const dotenv = require("dotenv").config();
 const app = express();
 
@@ -16,7 +17,8 @@ Connectdb();
 app.use(express.json()); // json body ko parse kerne me help krta h 
 
 app.use("/api/contacts", require("./routes/contact_routes"));
-
+app.use("/api/users", require("./routes/userRoutes"));
+app.use(errorHandler)
 app.listen(port, () => {
   console.log(`Server running on ${port}`);
 });
